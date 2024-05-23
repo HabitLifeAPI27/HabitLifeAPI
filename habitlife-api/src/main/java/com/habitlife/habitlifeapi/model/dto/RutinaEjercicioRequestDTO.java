@@ -1,6 +1,7 @@
 package com.habitlife.habitlifeapi.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RutinaEjercicioRequestDTO {
+    @NotNull(message = "El ID del usuario es obligatorio")
+    private Long usuarioId;
+
     @NotBlank(message = "El nombre de la rutina no puede estar vacio")
     private String nombre;
 
@@ -34,4 +38,6 @@ public class RutinaEjercicioRequestDTO {
     @NotBlank(message = "El numero de repeticiones no puede estar vacio")
     @Pattern(regexp = "[0-9]+", message = "La edad debe contener solo digitos")
     private int repeticiones;
+
+    private Long profesionalId;
 }

@@ -1,5 +1,6 @@
 package com.habitlife.habitlifeapi.model.entity;
 
+import com.habitlife.habitlifeapi.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,16 +19,20 @@ public class Pago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "descripcion", nullable = false)
-    private String descripcion;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
 
     @Column(name = "monto", nullable = false)
     private BigDecimal monto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "saldo_usuario", nullable = false)
-    private Usuario saldo;
-
     @Column(name = "fecha_pago")
     private LocalDate fechaPago;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado_pago", nullable = false)
+    private Status estadoPago; // PENDING, COMPLETED, FAILED
+
+    @Column(name = "metodo_pago", nullable = false)
+    private String metodoPago; // Información del método de pago (e.g., tarjeta de crédito, PayPal, etc.)
 }

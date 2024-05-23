@@ -1,6 +1,7 @@
 package com.habitlife.habitlifeapi.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlanNutricionalRequestDTO {
+
+    @NotNull(message = "El ID del usuario es obligatorio")
+    private Long usuarioId;
+
     @NotBlank(message = "El nombre del plan nutricional no puede estar vacio")
     private String nombre;
 
@@ -30,4 +35,6 @@ public class PlanNutricionalRequestDTO {
     @NotBlank(message = "Los alimentos no pueden estar vacios")
     @Size(min=5, max=100, message = "Los alimentos deben tener entre 5 a 100 caracteres")
     private String alimentos;
+
+    private Long profesionalId;
 }

@@ -18,8 +18,19 @@ public class RutinaEjercicioMapper {
         return modelMapper.map(RutinaEjercicioRequestDTO, RutinaEjercicio.class);
     }
 
-    public RutinaEjercicioResponseDTO convertToDTO(RutinaEjercicio rutinaejercicio){
-        return modelMapper.map(rutinaejercicio, RutinaEjercicioResponseDTO.class);
+    public RutinaEjercicioResponseDTO convertToDTO(RutinaEjercicio rutinaEjercicio) {
+        RutinaEjercicioResponseDTO responseDTO = modelMapper.map(rutinaEjercicio, RutinaEjercicioResponseDTO.class);
+        responseDTO.setUsuarioId(rutinaEjercicio.getUsuario().getId());
+        responseDTO.setNombreUsuario(rutinaEjercicio.getUsuario().getNombre() + " " +
+                rutinaEjercicio.getUsuario().getApellidoPaterno() + " " +
+                rutinaEjercicio.getUsuario().getApellidoMaterno());
+        if (rutinaEjercicio.getProfesional() != null) {
+            responseDTO.setProfesionalId(rutinaEjercicio.getProfesional().getId());
+            responseDTO.setNombreProfesional(rutinaEjercicio.getProfesional().getNombre() + " " +
+                    rutinaEjercicio.getProfesional().getApellidoPaterno() + " " +
+                    rutinaEjercicio.getProfesional().getApellidoMaterno());
+        }
+        return responseDTO;
     }
 
     public List<RutinaEjercicioResponseDTO> convertToListDTO(List<RutinaEjercicio> rutinaejercicios){

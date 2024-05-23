@@ -17,6 +17,10 @@ public class RutinaEstudio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
@@ -34,4 +38,8 @@ public class RutinaEstudio {
 
     @Column(name = "curso", nullable = false)
     private String curso;
+
+    @ManyToOne
+    @JoinColumn(name = "profesional_id")
+    private Profesional profesional;
 }

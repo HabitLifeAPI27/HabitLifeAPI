@@ -17,6 +17,10 @@ public class PlanNutricional {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
@@ -31,5 +35,9 @@ public class PlanNutricional {
 
     @Column(name = "alimentos", nullable = false)
     private String alimentos;
+
+    @ManyToOne
+    @JoinColumn(name = "profesional_id")
+    private Profesional profesional;
 
 }
