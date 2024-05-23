@@ -24,14 +24,13 @@ public class ProfesionalRequestDTO {
     @NotBlank(message = "El apellido materno del usuario no puede estar vacio")
     private String apellidoMaterno;
 
-    @NotBlank(message = "El correo del usuario no puede estar vacio")
-    @Email
+    @NotBlank(message = "El email no puede estar vacío")
+    @Email(message = "El email debe ser válido")
     private String email;
+
+    @NotBlank(message = "La contraseña no puede estar vacía")
+    private String contrasena;
 
     @NotBlank(message = "La especialidad no puede estar vacio")
     private String especialidad;
-
-    private PlanNutricional planNutricional;
-    private RutinaEjercicio rutinaEjercicio;
-    private RutinaEstudio rutinaEstudio;
 }

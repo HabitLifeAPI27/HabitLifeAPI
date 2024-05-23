@@ -4,12 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class PagoResponseDTO {
     private Long id;
-    private String descripcion;
-    private Double monto;
-    private UsuarioResponseDTO saldo;
+    private Long usuarioId;
+    private BigDecimal monto;
+    private LocalDateTime fechaPago;
+    private String estadoPago;
+    private String metodoPago;
 }

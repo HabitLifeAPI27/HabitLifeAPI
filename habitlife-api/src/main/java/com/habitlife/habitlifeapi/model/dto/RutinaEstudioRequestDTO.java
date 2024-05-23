@@ -1,6 +1,7 @@
 package com.habitlife.habitlifeapi.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RutinaEstudioRequestDTO {
+    @NotNull(message = "El ID del usuario es obligatorio")
+    private Long usuarioId;
+
     @NotBlank(message = "El nombre de la rutina no puede estar vacio")
     private String nombre;
 
@@ -33,4 +37,6 @@ public class RutinaEstudioRequestDTO {
 
     @NotBlank(message = "El nombre del curso no puede estar vacio")
     private String curso;
+
+    private Long profesionalId;
 }

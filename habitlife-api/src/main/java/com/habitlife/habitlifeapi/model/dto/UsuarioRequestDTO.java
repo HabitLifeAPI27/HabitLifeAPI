@@ -22,8 +22,12 @@ public class UsuarioRequestDTO {
     private String apellidoMaterno;
 
     @NotBlank(message = "El correo del usuario no puede estar vacio")
-    @Email
+    @Email(message = "El email debe ser válido")
     private String email;
+
+    @NotBlank(message = "La contraseña no puede estar vacía")
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
+    private String contrasena;
 
     @NotBlank(message = "La edad del usuario no puede estar vacia")
     @Size(min=1, max=2, message = "La edad del usuario debe tener entre 1 y 2 caracteres")
@@ -32,9 +36,6 @@ public class UsuarioRequestDTO {
 
     @NotBlank(message = "El objetivo no puede estar vacio")
     private Objetivo objetivo;
-
-    @Pattern(regexp = "[0-9]+", message = "El plan debe contener solo digitos")
-    private BigDecimal saldo;
 
     @NotBlank(message = "El plan del usuario no puede estar vacio")
     @Pattern(regexp = "[0-9]+", message = "El plan debe contener solo digitos")

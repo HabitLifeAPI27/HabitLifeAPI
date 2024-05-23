@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -29,6 +30,9 @@ public class Usuario {
 
     @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "contrasena", nullable = false)
+    private String contrasena;
 
     @Column(name = "anios", nullable = false)
     private int anios;
@@ -54,7 +58,22 @@ public class Usuario {
     @Column(name = "saldo", nullable = false)
     private BigDecimal saldo;
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Objetivo> objetivos;
+
     @ManyToOne
-    @JoinColumn(name = "objetivo_id", nullable = false)
-    private Objetivo objetivo;
+    @JoinColumn(name = "profesional_id")
+    private Profesional profesional;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PlanNutricional> planesNutricionales;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RutinaEjercicio> rutinasEjercicios;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RutinaEstudio> rutinasEstudios;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Pago> pagos;  // Lista de pagos realizados por el usuario
 }

@@ -18,8 +18,19 @@ public class PlanNutricionalMapper {
         return modelMapper.map(PlanNutricionalRequestDTO, PlanNutricional.class);
     }
 
-    public PlanNutricionalResponseDTO convertToDTO(PlanNutricional plannutricional){
-        return modelMapper.map(plannutricional, PlanNutricionalResponseDTO.class);
+    public PlanNutricionalResponseDTO convertToDTO(PlanNutricional planNutricional) {
+        PlanNutricionalResponseDTO responseDTO = modelMapper.map(planNutricional, PlanNutricionalResponseDTO.class);
+        responseDTO.setUsuarioId(planNutricional.getUsuario().getId());
+        responseDTO.setNombreUsuario(planNutricional.getUsuario().getNombre() + " " +
+                planNutricional.getUsuario().getApellidoPaterno() + " " +
+                planNutricional.getUsuario().getApellidoMaterno());
+        if (planNutricional.getProfesional() != null) {
+            responseDTO.setProfesionalId(planNutricional.getProfesional().getId());
+            responseDTO.setNombreProfesional(planNutricional.getProfesional().getNombre() + " " +
+                    planNutricional.getProfesional().getApellidoPaterno() + " " +
+                    planNutricional.getProfesional().getApellidoMaterno());
+        }
+        return responseDTO;
     }
 
     public List<PlanNutricionalResponseDTO> convertToListDTO(List<PlanNutricional> planesnutricionales){

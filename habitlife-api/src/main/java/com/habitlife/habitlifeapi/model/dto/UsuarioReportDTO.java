@@ -13,5 +13,11 @@ public class UsuarioReportDTO {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private Objetivo objetivo;
+    private String email;
+
+    // Campos adicionales para reportes
+    private int numeroDeObjetivos;
+    private int numeroDePlanesNutricionales;
+    private int numeroDeRutinasEjercicio;
+    private int numeroDeRutinasEstudio;
 }

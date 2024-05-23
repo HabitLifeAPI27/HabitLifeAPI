@@ -4,6 +4,7 @@ import com.habitlife.habitlifeapi.model.dto.ObjetivoRequestDTO;
 import com.habitlife.habitlifeapi.model.dto.ObjetivoResponseDTO;
 import com.habitlife.habitlifeapi.model.entity.Objetivo;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
