@@ -17,6 +17,10 @@ public class RutinaEjercicio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
@@ -34,5 +38,9 @@ public class RutinaEjercicio {
 
     @Column(name = "repeticiones", nullable = false)
     private int repeticiones;
+
+    @ManyToOne
+    @JoinColumn(name = "profesional_id")
+    private Profesional profesional;
 
 }

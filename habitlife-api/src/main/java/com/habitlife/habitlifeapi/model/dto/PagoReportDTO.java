@@ -6,13 +6,17 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class PagoReportDTO {
-    private long id;
+    private Long id;
+    private String usuarioNombre;
+    private String usuarioEmail;
     private BigDecimal monto;
-    private LocalDate fechaPago;
-    private long pagoCount;
+    private LocalDateTime fechaPago;
+    private String estadoPago;
+    private String metodoPago;
 }

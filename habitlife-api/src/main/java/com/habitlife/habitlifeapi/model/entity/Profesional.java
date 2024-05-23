@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,10 +25,13 @@ public class Profesional {
     private String apellidoPaterno;
 
     @Column(name = "apellido_materno", nullable = false)
-    private String apelldioMaterno;
+    private String apellidoMaterno;
 
     @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "contrasena", nullable = false)
+    private String contrasena;
 
     @Column(name = "anios", nullable = false)
     private int anios;
@@ -44,15 +48,15 @@ public class Profesional {
     @Column(name = "especialidad_id", nullable = false)
     private String especialidad;
 
-    @ManyToOne
-    @JoinColumn(name = "rutina_ejercicio_id", nullable = false)
-    private RutinaEjercicio rutinaEjercicio;
+    @OneToMany(mappedBy = "profesional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Usuario> usuarios;  // Lista de usuarios asignados a este profesional
 
-    @ManyToOne
-    @JoinColumn(name = "rutina_ejercicio_id", nullable = false)
-    private RutinaEstudio rutinaEstudio;
+    @OneToMany(mappedBy = "profesional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PlanNutricional> planesNutricionales;
 
-    @ManyToOne
-    @JoinColumn(name = "plan_nutricional_id", nullable = false)
-    private PlanNutricional planNutricional;
+    @OneToMany(mappedBy = "profesional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RutinaEjercicio> rutinasEjercicios;
+
+    @OneToMany(mappedBy = "profesional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RutinaEstudio> rutinasEstudios;
 }
