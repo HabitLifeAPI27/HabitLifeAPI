@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @AllArgsConstructor
 public class NotificacionesMapper {
@@ -18,5 +20,12 @@ public class NotificacionesMapper {
 
     public NotificacionesResponseDTO convertToDTO(Notificaciones notificacion) {
         return modelMapper.map(notificacion, NotificacionesResponseDTO.class);
+    }
+
+    public List<NotificacionesResponseDTO> convertToListDTO(List<Notificaciones> notificaciones){
+
+        return notificaciones.stream()
+                .map(this::convertToDTO)
+                .toList();
     }
 }

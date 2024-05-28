@@ -1,20 +1,22 @@
 package com.habitlife.habitlifeapi.repository;
 
 import com.habitlife.habitlifeapi.model.entity.Objetivo;
+import com.habitlife.habitlifeapi.model.enums.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public interface ObjetivoRepository extends JpaRepository<Objetivo, Long> {
     @Query("SELECT COUNT(p) > 0 FROM Objetivo p WHERE p.nombre = :nombre")
     boolean existsByNombre(@Param("nombre") String nombre);
 
-    List<Objetivo> findByNombre(String nombre);
+    boolean existsById(Long id);
 
+    List<Objetivo> findByNombre(String nombre);
+    List<Objetivo> findAllByFechaFinBeforeAndEstadoObjetivo(LocalDate fechaFin, Status estado);
     // buscar objetivos por descripción que contenga una cadena específica
     List<Objetivo> findByDescripcionContaining(String keyword);
 

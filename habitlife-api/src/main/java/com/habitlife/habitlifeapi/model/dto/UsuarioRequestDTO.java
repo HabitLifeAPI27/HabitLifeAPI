@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -29,15 +29,15 @@ public class UsuarioRequestDTO {
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     private String contrasena;
 
-    @NotBlank(message = "La edad del usuario no puede estar vacia")
-    @Size(min=1, max=2, message = "La edad del usuario debe tener entre 1 y 2 caracteres")
-    @Pattern(regexp = "[0-9]+", message = "La edad debe contener solo digitos")
+    @Min(value = 0, message = "La edad del usuario no puede ser negativa")
+    @Max(value = 99, message = "La edad del usuario no puede ser mayor a 99")
     private int anios;
 
-    @NotBlank(message = "El objetivo no puede estar vacio")
-    private Objetivo objetivo;
+    private List<Objetivo> objetivos;
 
-    @NotBlank(message = "El plan del usuario no puede estar vacio")
-    @Pattern(regexp = "[0-9]+", message = "El plan debe contener solo digitos")
-    private boolean premium;
+    @NotBlank(message = "La dirección no puede estar vacía")
+    private String direccion;
+
+    @NotBlank(message = "El telefono no puede estar vacío")
+    private String telefono;
 }

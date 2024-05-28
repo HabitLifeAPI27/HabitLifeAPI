@@ -1,13 +1,22 @@
 package com.habitlife.habitlifeapi.repository;
 
 import com.habitlife.habitlifeapi.model.entity.RutinaEjercicio;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public interface RutinaEjercicioRepository {
+public interface RutinaEjercicioRepository extends JpaRepository<RutinaEjercicio, Long> {
+    boolean existsById(Long id);
+
+    @Query("SELECT COUNT(r) > 0 FROM RutinaEjercicio r WHERE r.nombre = :nombre")
+    boolean existsByNombreRutina(@Param("nombre") String nombre);
+
     List<RutinaEjercicio> findByUsuarioId(Long usuarioId);
+
+    List<RutinaEjercicio> findAllByFechaFinBefore(LocalDate fechaFin);
 
     List<RutinaEjercicio> findByNombre(String nombre);
 

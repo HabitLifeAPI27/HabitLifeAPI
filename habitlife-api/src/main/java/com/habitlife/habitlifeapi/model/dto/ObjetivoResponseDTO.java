@@ -6,7 +6,6 @@ import com.habitlife.habitlifeapi.model.enums.TipoObjetivo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
@@ -15,10 +14,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ObjetivoResponseDTO {
     private long id;
+    private Long usuarioId;
     private String nombre;
     private TipoObjetivo tipoObjetivo;
     private Status estadoObjetivo;
     private LocalDate fechaInicio;
-    private Local fechaFin;
+    private LocalDate fechaFin;
     private Frecuencia frecuencia;
 }
