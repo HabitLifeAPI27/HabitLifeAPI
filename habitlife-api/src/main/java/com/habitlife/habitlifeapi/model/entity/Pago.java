@@ -1,5 +1,6 @@
 package com.habitlife.habitlifeapi.model.entity;
 
+import com.habitlife.habitlifeapi.model.enums.MetodosPago;
 import com.habitlife.habitlifeapi.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,9 +31,10 @@ public class Pago {
     private LocalDate fechaPago;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_pago", nullable = false)
+    @Column(name = "estado_pago")
     private Status estadoPago; // PENDING, COMPLETED, FAILED
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "metodo_pago", nullable = false)
-    private String metodoPago; // Información del método de pago (e.g., tarjeta de crédito, PayPal, etc.)
+    private MetodosPago metodoPago; // Información del método de pago (e.g., tarjeta de crédito, PayPal, etc.)
 }

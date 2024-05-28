@@ -14,28 +14,16 @@ import java.util.List;
 public class PlanNutricionalMapper {
     private final ModelMapper modelMapper;
 
-    public PlanNutricional convertToEntity(PlanNutricionalRequestDTO PlanNutricionalRequestDTO){
-        return modelMapper.map(PlanNutricionalRequestDTO, PlanNutricional.class);
+    public PlanNutricional convertToEntity(PlanNutricionalRequestDTO planNutricionalRequestDTO) {
+        return modelMapper.map(planNutricionalRequestDTO, PlanNutricional.class);
     }
 
     public PlanNutricionalResponseDTO convertToDTO(PlanNutricional planNutricional) {
-        PlanNutricionalResponseDTO responseDTO = modelMapper.map(planNutricional, PlanNutricionalResponseDTO.class);
-        responseDTO.setUsuarioId(planNutricional.getUsuario().getId());
-        responseDTO.setNombreUsuario(planNutricional.getUsuario().getNombre() + " " +
-                planNutricional.getUsuario().getApellidoPaterno() + " " +
-                planNutricional.getUsuario().getApellidoMaterno());
-        if (planNutricional.getProfesional() != null) {
-            responseDTO.setProfesionalId(planNutricional.getProfesional().getId());
-            responseDTO.setNombreProfesional(planNutricional.getProfesional().getNombre() + " " +
-                    planNutricional.getProfesional().getApellidoPaterno() + " " +
-                    planNutricional.getProfesional().getApellidoMaterno());
-        }
-        return responseDTO;
+        return modelMapper.map(planNutricional, PlanNutricionalResponseDTO.class);
     }
 
-    public List<PlanNutricionalResponseDTO> convertToListDTO(List<PlanNutricional> planesnutricionales){
-
-        return planesnutricionales.stream()
+    public List<PlanNutricionalResponseDTO> convertToListDTO(List<PlanNutricional> planesNutricionales) {
+        return planesNutricionales.stream()
                 .map(this::convertToDTO)
                 .toList();
     }

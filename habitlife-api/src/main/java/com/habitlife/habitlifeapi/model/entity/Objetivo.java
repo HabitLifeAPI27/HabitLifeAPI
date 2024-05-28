@@ -11,7 +11,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +23,7 @@ public class Objetivo {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @Column(name = "nombre", nullable = false)
@@ -40,11 +39,11 @@ public class Objetivo {
     private Status estadoObjetivo;
 
     @CreationTimestamp
-    @Column(name = "fecha_registro", nullable = false)
+    @Column(name = "fecha_registro")
     private LocalDate fechaRegistro;
 
     @UpdateTimestamp
-    @Column(name = "fecha_actualizacion", nullable = false)
+    @Column(name = "fecha_actualizacion")
     private LocalDate fechaActualizacion;
 
     @Column(name = "fecha_inicio", nullable = false)

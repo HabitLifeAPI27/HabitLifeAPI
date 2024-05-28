@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -37,33 +37,34 @@ public class Usuario {
     @Column(name = "anios", nullable = false)
     private int anios;
 
-    @Column(name = "fecha_registro", nullable = false)
+    @Column(name = "fecha_registro")
     private LocalDate fechaRegistro;
 
-    @Column(name = "fecha_actualizacion", nullable = false)
+    @Column(name = "fecha_actualizacion")
     private LocalDate fechaActualizacion;
 
     @Column(name = "direccion", nullable = false)
     private String direccion;
 
-    @Column(name = "premium", nullable = false)
+    @Column(name = "premium")
     private boolean premium;
 
-    @Column(name = "fecha_premium", nullable = false)
+    @Column(name = "fecha_premium")
     private LocalDate fechaPremium;
 
     @Column(name = "telefono", nullable = false)
     private String telefono;
 
-    @Column(name = "saldo", nullable = false)
-    private BigDecimal saldo;
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Objetivo> objetivos;
 
-    @ManyToOne
-    @JoinColumn(name = "profesional_id")
-    private Profesional profesional;
+    @ManyToMany
+    @JoinTable(
+            name = "usuario_profesional",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "profesional_id")
+    )
+    private List<Profesional> profesionales = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PlanNutricional> planesNutricionales;

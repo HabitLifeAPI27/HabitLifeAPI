@@ -17,6 +17,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ObjetivoRequestDTO {
 
+    private Long usuarioId;
+
     @NotBlank(message = "El nombre del objetivo no puede estar vacio")
     private String nombre;
 
@@ -29,11 +31,11 @@ public class ObjetivoRequestDTO {
     @NotNull(message = "El estado del objetivo no puede estar vacío")
     private Status estadoObjetivo;
 
-    @NotBlank(message = "La fecha de inicio no puede estar vacia")
+    @NotNull(message = "La fecha de inicio no puede estar vacia")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate fechaInicio;
 
-    @NotBlank(message = "La fecha de fin no puede estar vacia")
+    @NotNull(message = "La fecha de fin no puede estar vacia")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate fechaFin;
 

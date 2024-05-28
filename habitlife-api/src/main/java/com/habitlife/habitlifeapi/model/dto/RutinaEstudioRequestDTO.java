@@ -1,8 +1,11 @@
 package com.habitlife.habitlifeapi.model.dto;
 
+import com.habitlife.habitlifeapi.model.enums.UserType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,8 +17,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RutinaEstudioRequestDTO {
-    @NotNull(message = "El ID del usuario es obligatorio")
-    private Long usuarioId;
+    @Enumerated(EnumType.STRING)
+    private UserType tipoUsuario;
 
     @NotBlank(message = "El nombre de la rutina no puede estar vacio")
     private String nombre;
@@ -31,12 +34,14 @@ public class RutinaEstudioRequestDTO {
     @DateTimeFormat
     private LocalDate fechaFin;
 
-    @NotBlank(message = "El numero de horas no puede estar vacio")
-    @Pattern(regexp = "[0-9]+", message = "Las horas debe contener solo digitos")
+    @Min(value = 0, message = "La cantidad de horas no puede ser negativa")
+    @Max(value = 99, message = "La cantidad de horas no puede ser mayor a 99")
     private int horas;
 
     @NotBlank(message = "El nombre del curso no puede estar vacio")
     private String curso;
+
+    private Long usuarioId;
 
     private Long profesionalId;
 }
