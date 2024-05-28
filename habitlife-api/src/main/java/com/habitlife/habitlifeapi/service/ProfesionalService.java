@@ -85,7 +85,6 @@ public class ProfesionalService {
     }
 
     @Transactional
-
     public void deleteProfesional(Long id) {
         if (!profesionalRepository.existsById(id)) {
             throw new ResourceNotFoundException("Profesional no encontrado con el ID: " + id);
