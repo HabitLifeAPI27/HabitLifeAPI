@@ -1,5 +1,6 @@
 package com.habitlife.habitlifeapi.model.dto;
 
+import com.habitlife.habitlifeapi.model.entity.Objetivo;
 import com.habitlife.habitlifeapi.model.entity.Profesional;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,8 +18,7 @@ public class UsuarioResponseDTO {
     private String apellidoMaterno;
     private String email;
     private int anios;
-    private List<ObjetivoResponseDTO> objetivos;
-    private boolean premium;
+    private List<Objetivo> objetivos;
     private String direccion;
     private String telefono;
     private List<Profesional> profesionals;
