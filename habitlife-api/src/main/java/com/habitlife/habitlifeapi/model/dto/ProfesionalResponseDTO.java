@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,10 +12,9 @@ public class ProfesionalResponseDTO {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private String anios;
+    private int anios;
     private String email;
+    private String telefono;
     private String especialidad;
-    private LocalDate fechaRegistro;
-    private LocalDate fechaActualizacion;
 
 }
