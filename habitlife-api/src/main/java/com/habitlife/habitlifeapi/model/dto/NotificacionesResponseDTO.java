@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NotificacionesResponseDTO {
-    private long id;
     private String mensaje;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

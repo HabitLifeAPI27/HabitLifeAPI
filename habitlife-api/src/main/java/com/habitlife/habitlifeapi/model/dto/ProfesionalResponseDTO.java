@@ -14,6 +14,7 @@ public class ProfesionalResponseDTO {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
+    private String anios;
     private String email;
     private String especialidad;
     private LocalDate fechaRegistro;

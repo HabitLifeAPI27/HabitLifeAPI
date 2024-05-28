@@ -1,5 +1,8 @@
 package com.habitlife.habitlifeapi.model.dto;
 
+import com.habitlife.habitlifeapi.model.enums.UserType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -14,9 +17,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlanNutricionalRequestDTO {
+    private Long id;
 
-    @NotNull(message = "El ID del usuario es obligatorio")
+    @Enumerated(EnumType.STRING)
+    private UserType tipoUsuario;
+
     private Long usuarioId;
+
+    private Long profesionalId;
 
     @NotBlank(message = "El nombre del plan nutricional no puede estar vacio")
     private String nombre;
@@ -24,11 +32,11 @@ public class PlanNutricionalRequestDTO {
     @NotBlank(message = "La descripcion no puede estar vacia")
     private String descripcion;
 
-    @NotBlank(message = "La fecha de inicio no puede estar vacia")
+    @NotNull(message = "La fecha de inicio no puede estar vacia")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate fechaInicio;
 
-    @NotBlank(message = "La fecha de inicio no puede estar vacia")
+    @NotNull(message = "La fecha de fin no puede estar vacia")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate fechaFin;
 
@@ -36,5 +44,4 @@ public class PlanNutricionalRequestDTO {
     @Size(min=5, max=100, message = "Los alimentos deben tener entre 5 a 100 caracteres")
     private String alimentos;
 
-    private Long profesionalId;
 }

@@ -1,8 +1,11 @@
 package com.habitlife.habitlifeapi.model.dto;
 
+import com.habitlife.habitlifeapi.model.enums.UserType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,8 +17,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RutinaEjercicioRequestDTO {
-    @NotNull(message = "El ID del usuario es obligatorio")
-    private Long usuarioId;
+    @Enumerated(EnumType.STRING)
+    private UserType tipoUsuario;
 
     @NotBlank(message = "El nombre de la rutina no puede estar vacio")
     private String nombre;
@@ -31,13 +34,15 @@ public class RutinaEjercicioRequestDTO {
     @DateTimeFormat
     private LocalDate fechaFin;
 
-    @NotBlank(message = "El numero de series no puede estar vacio")
-    @Pattern(regexp = "[0-9]+", message = "La edad debe contener solo digitos")
+    @Min(value = 0, message = "La edad del usuario no puede ser negativa")
+    @Max(value = 99, message = "La edad del usuario no puede ser mayor a 99")
     private int series;
 
-    @NotBlank(message = "El numero de repeticiones no puede estar vacio")
-    @Pattern(regexp = "[0-9]+", message = "La edad debe contener solo digitos")
+    @Min(value = 0, message = "La edad del usuario no puede ser negativa")
+    @Max(value = 99, message = "La edad del usuario no puede ser mayor a 99")
     private int repeticiones;
+
+    private Long usuarioId;
 
     private Long profesionalId;
 }

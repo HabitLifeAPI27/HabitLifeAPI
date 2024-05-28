@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -36,10 +37,10 @@ public class Profesional {
     @Column(name = "anios", nullable = false)
     private int anios;
 
-    @Column(name = "fecha_registro", nullable = false)
+    @Column(name = "fecha_registro")
     private LocalDate fechaRegistro;
 
-    @Column(name = "fecha_actualizacion", nullable = false)
+    @Column(name = "fecha_actualizacion")
     private LocalDate fechaActualizacion;
 
     @Column(name = "telefono_id", nullable = false)
@@ -48,8 +49,8 @@ public class Profesional {
     @Column(name = "especialidad_id", nullable = false)
     private String especialidad;
 
-    @OneToMany(mappedBy = "profesional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Usuario> usuarios;  // Lista de usuarios asignados a este profesional
+    @ManyToMany(mappedBy = "profesionales")
+    private List<Usuario> usuarios = new ArrayList<>();  // Lista de usuarios asignados a este profesional
 
     @OneToMany(mappedBy = "profesional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PlanNutricional> planesNutricionales;

@@ -1,5 +1,6 @@
 package com.habitlife.habitlifeapi.model.entity;
 
+import com.habitlife.habitlifeapi.model.enums.UserType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,9 @@ public class RutinaEstudio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Enumerated(EnumType.STRING)
+    private UserType tipoUsuario;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
@@ -42,4 +46,10 @@ public class RutinaEstudio {
     @ManyToOne
     @JoinColumn(name = "profesional_id")
     private Profesional profesional;
+
+    @Column(name = "fecha_registro")
+    private LocalDate fechaRegistro;
+
+    @Column(name = "fecha_actualizacion")
+    private LocalDate fechaActualizacion;
 }

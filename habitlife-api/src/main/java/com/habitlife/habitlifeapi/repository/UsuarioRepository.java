@@ -1,18 +1,20 @@
 package com.habitlife.habitlifeapi.repository;
 
-import com.habitlife.habitlifeapi.model.entity.Objetivo;
 import com.habitlife.habitlifeapi.model.entity.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public interface UsuarioRepository {
+public interface UsuarioRepository extends JpaRepository <Usuario, Long> {
     @Query("SELECT COUNT(u) > 0 FROM Usuario u WHERE u.nombre = :nombre AND u.email = :email AND u.telefono = :telefono")
-    boolean existsByNombreEmailTelefonoProfesional(@Param("nombre") String nombre,
+    boolean existsByNombreEmailTelefonoUsuario(@Param("nombre") String nombre,
                                                    @Param("email") String email,
                                                    @Param("telefono") String telefono);
+
+    boolean existsById(Long id);
 
     List<Usuario> findByNombre(String nombre);
 
@@ -21,8 +23,6 @@ public interface UsuarioRepository {
     List<Usuario> findByAnios(int anios);
 
     List<Usuario> findByFechaRegistro(LocalDate fechaRegistro);
-
-    List<Usuario> findByObjetivos(Objetivo objetivo);
 
     List<Usuario> findByPremiumTrue();
 }
