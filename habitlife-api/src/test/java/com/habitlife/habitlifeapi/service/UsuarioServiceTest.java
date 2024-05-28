@@ -119,7 +119,7 @@ public class UsuarioServiceTest {
     }
 
     @Test
-    void createAccount_UsuarioNuevo() {
+    void testcreateAccount_UsuarioNuevo() {
         UsuarioRequestDTO usuarioRequestDTO = new UsuarioRequestDTO();
         usuarioRequestDTO.setNombre("Juan");
         usuarioRequestDTO.setApellidoPaterno("Perez");
