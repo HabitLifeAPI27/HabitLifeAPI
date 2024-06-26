@@ -1,0 +1,5 @@
+com\habitlife\habitlifeapi\service\ProfesionalServiceTest.class
+com\habitlife\habitlifeapi\controller\UsuarioControllerIntegrationTest.class
+com\habitlife\habitlifeapi\HabitlifeApiApplicationTests.class
+com\habitlife\habitlifeapi\controller\ProfesionalControllerIntegrationTest.class
+com\habitlife\habitlifeapi\service\UsuarioServiceTest.class
